@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <!-- 1. CDN 방법 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+    <div data-role="page">
+        <div data-role="header">
+            <h2>Button Widget</h2>
+        </div>
+        <div data-role="content">
+            <!-- JQM에서 버튼을 되는 요소 3개 -->
+            <a href="#" data-role="button">Anchor Button</a>
+            <input type="button" value="Input Button">
+            <button style="background-color:skyblue;">Button element</button>
+            <hr>
+
+            <button data-icon="home">Icon button</button>
+            <button data-icon="home" data-iconpos="right">Icon button</button>
+            <button data-icon="home" data-iconpos="top">Icon button</button>
+            <button data-icon="home" data-iconpos="bottom">Icon button</button>
+            <button data-icon="home" data-iconpos="no text">Icon button</button>
+            <hr>
+
+            <!-- 버튼을 inline 요소로 -->
+            <button data-inline="true">button1</button>
+            <button data-inline="true">button2</button>
+            <button data-inline="true">button3</button>
+
+            <!-- 이미지 버튼 -->
+            <button><img src="./imgs/pengsoo.jpg" style="width: 100%"></button>
+            <a href="#"><img src="./imgs/pengsoo.jpg" style="width: 100%"></a>
+
+            <hr>
+            <button disabled>button</button>
+
+            <hr>
+            <button onclick="clickBtn()">button</button>
+            <a href="javascript:btnclick(30)" data-role="button">Anchor button</a>
+            
+
+        </div>
+    </div>
+
+    <script>
+        function clickBtn(){
+            alert('clicked');
+        }
+
+        function btnclick(x){
+            alert('hi :) '+x);
+        }
+    </script>
+    
+</body>
+</html>
