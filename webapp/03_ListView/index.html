@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JQM 추가 -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<body>
+
+    <!-- Android의 Activity 같은 역할을 하는 page -->
+    <div data-role="page">
+        <div data-role="header">
+            <h2>ListView</h2>
+            <a href="#" data-icon="home" data-iconpos="notext">HOME</a>
+        </div>
+        <div data-role="content">
+            <!-- 기본적인 ListView -->
+            <ul data-role="listview" data-inset="true">
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ul>
+            <br>
+            
+            <ol data-role="listview" data-inset="true">
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ol>
+            <br>
+            
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#page_02">One</a></li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+            </ul>
+            <br>
+            
+            <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider">Number</li>
+                <li><a href="#page_02">One</a></li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+
+                <li data-role="list-divider">Fruits</li>
+                <li><a href="#page_02">Apple</a></li>
+                <li><a href="#">Orange</a></li>
+                <li><a href="#">Banana</a></li>
+            </ul>
+            <br>
+
+            <!-- 필터를 가진 리스트 뷰 -->
+            <ul data-role="listview" data-inset="true" data-filter="true">
+                <li><a href="#">aa</a></li>
+                <li><a href="#">vv</a></li>
+                <li><a href="#">ec</a></li>
+                <li><a href="#">cd</a></li>
+                <li><a href="#">한글</a></li>
+                <li><a href="#">한가위</a></li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="검색어 입력">
+                <li><a href="#">aa</a></li>
+                <li><a href="#">vv</a></li>
+                <li><a href="#">ec</a></li>
+                <li><a href="#">cd</a></li>
+                <li><a href="#">한글</a></li>
+                <li><a href="#">한가위</a></li>
+            </ul>
+            <br>
+
+            <!-- count bubble -->
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#">One <span class="ui-li-count">New</span></a></li>
+                <li><a href="#">Two <span class="ui-li-count" style="background-color: tomato; color: white;">15</span></a></li>
+                <li><a href="#">Three</a></li>
+            </ul>
+            <br>
+
+            <!-- 아이콘 -->
+            <ul data-role="listview" data-inset="true">
+                <li data-icon="info"><a href="#">One</a></li>
+                <li data-icon="gear"><a href="#">Two</a></li>
+                <li data-icon="delete"><a href="#">Three</a></li>
+                <li data-icon="false"><a href="#">Four</a></li> <!-- 아이콘 없애기-->
+            </ul>
+            <br>
+
+            <!-- 이미지 리스트 뷰 -->
+            <ul data-role="listview" data-inset="true">
+                <!-- 아이콘 사이즈 최대 16*16 -->
+                <li><a href="#"><img src="./imgs/panda.png" class="ui-li-icon">panda</a></li>
+                <li><a href="#"><img src="./imgs/penguin.png" class="ui-li-icon">penguin</a></li>
+                <li><a href="#"><img src="./imgs/rabbit.png" class="ui-li-icon">rabbit</a></li>
+            </ul>
+            <br>
+
+            <ul data-role="listview">
+                <!-- 썸네일 사이즈 최대 80*80 -->
+                <li><a href="#"><img src="./imgs/pengsoo.jpg">One</a></li>
+                <li><a href="#"><img src="./imgs/pengsoo2.jpg">Two</a></li>
+                <li><a href="#"><img src="./imgs/pengsoo3.jpg" width="80" height="80">Three</a></li>            
+            </ul>
+            <br>
+
+            <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider">Image news <span class="ui-li-count">3</span></li>
+                <li>
+                    <h2>Pengsoo</h2>
+                    <div><img src="./imgs/pengsoo.jpg" width="100%"></div>
+                    <p>This is the cutest penguin in the world.</p>
+                    <p class="ui-li-aside">2020/01/16</p>
+                </li>
+                <li>
+                    <h2>Pengsoo</h2>
+                    <div><img src="./imgs/pengsoo2.jpg" width="100%"></div>
+                    <p>This is the cutest penguin in the world.</p>
+                    <p class="ui-li-aside">2020/01/16</p>
+                </li>
+                <li>
+                    <h2>Pengsoo</h2>
+                    <div><img src="./imgs/pengsoo3.jpg" width="100%"></div>
+                    <p>This is the cutest penguin in the world.</p>
+                    <p class="ui-li-aside">2020/01/16</p>
+                </li>
+
+            </ul>
+            <br>
+
+            <!-- 리스트 안에 사용자 입력폼 꾸미기 -->
+            <ul data-role="listview" data-inset="true">
+                <li class="ui-field-contain">
+                    <label>Text Input:</label>
+                    <input type="text" name="">
+                </li>
+                <li class="ui-field-contain">
+                    <label>Message:</label>
+                    <textarea></textarea>
+                </li>
+                <li class="ui-field-contain">
+                    <label>Do you agree?</label>
+                    <label><input type="checkbox">I agree</label>
+                </li>
+                <li class="ui-field-contain">
+                    <label>Choose your favorite rockstar</label>
+                    <label><input type="checkbox">Changmo</label>
+                    <label><input type="checkbox">Ash Island</label>
+                    <label><input type="checkbox">Simon Dominic</label>
+                </li>
+                <li class="ui-field-contain">
+                    <label>Slider</label>
+                    <input type="range" step="1" value="0" min="0" max="100" data-highlight="true">
+                </li>
+                <li class="ui-field-contain">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;"><input type="submit" value="submit"></td>
+                            <td><input type="reset" value="cancel"></td>
+                        </tr>
+                    </table>
+                </li>
+                
+            </ul>
+        
+
+
+        </div>
+    </div>
+
+    <div data-role="page" id="page_02">
+        <div data-role="header" data-theme="b">
+            <h2>Second Page</h2>
+        </div>
+        <div data-role="content">
+            <p>This is Second page</p>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
