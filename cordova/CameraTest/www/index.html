@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">                
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+
+        <link rel="stylesheet" href="./css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+
+        <!-- JQM library -->        
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/jquery.mobile-1.4.5.min.js"></script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>  
+
+    </head>
+    <body>
+
+        <div data-role="page">
+            <div data-role="header" data-position="fixed">
+                <h2>Camera Test APP</h2>
+            </div> 
+
+            <div data-role="content">
+                <div class="ui-bar ui-bar-b">
+                    <h3>Using Camera</h3>
+                </div>
+                <br>
+                <img src="" id="img_pic">
+            </div>
+
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <div data-role="navbar">
+                    <ul>
+                        <li><button id="btn_takePic">Take Pictures</button></li>
+                        <li><button id="btn_getPic">Get the Pictures</button id="btn_takePic"></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        
+    </body>
+</html>
