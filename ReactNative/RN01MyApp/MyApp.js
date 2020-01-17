@@ -99,7 +99,7 @@ const rootContainerStyle={
 
     // 컴포넌트 가로축 가운데 정렬하기
     // 현재 flex-direction에 해당하는 세로방향의 반대축 정렬인 align-items 속성 사용
-    // alignItems: 'center',
+    alignItems: 'center',
 };
 
 // 스타일 변경
