@@ -107,7 +107,7 @@ export default class MainComponent extends Component{
 // onChangeText에 의해 실행될 멤버메소드를 만들때
 // this 키워드로 state 변수를 사용하려면 화살표함수로
 // 일반함수를 사용하려면 bind()를 사용해야 함
-// ****************************************************
+// *****************************************************
 
 //스타일 객체
 const style= StyleSheet.create( {
