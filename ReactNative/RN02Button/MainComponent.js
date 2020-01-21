@@ -87,7 +87,7 @@ class MainComponent extends Component{
             // </View>
 
 
-            // 3-5) state 변수를 이용해서 <Text> 글씨 변경과 이미지 이미지 변경
+            // 3-5) state 변수를 이용해서 <Text> 글씨 변경 및 이미지 변경
             <View style={ {padding:16, flex:1} }>
                 <Button title="change text" onPress={this.changeText}></Button>
                 <Text style={ textStyle }>{ this.state.text }</Text>
