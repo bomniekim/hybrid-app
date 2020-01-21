@@ -7,7 +7,7 @@ export default class MainComponent extends Component{
     constructor(){
         super();
 
-        // state: 화면이 자동갱신되는 특별한 멤버변수
+        // state: 데이터 변경 및 화면 자동갱신을 하게 하는 특별한 멤버변수
         this.state= {
             text: "Hello",
             msg:"",
