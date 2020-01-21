@@ -3,45 +3,51 @@ import {Text, View, Button, Image, TouchableHighlight, TouchableOpacity, Touchab
 
 export default class MainComponent extends Component{
 
-    constructor(){
-        super();
+    // constructor(){
+    //     super();
 
-        // 컴포넌트의 특별한 멤버변수 state
-        this.state={
-            img: require('./images/ben1.jpg'),
+    //     // 컴포넌트의 특별한 멤버변수 state
+    //     this.state={
+    //         img: require('./images/ben1.jpg'),
 
-            // 이미지를 순차적으로 변경하기 위해
-            imgNum: 0, // 배열의 index 번호
-            imgArray: [ // 함수도 객체이므로 JS의 배열 안에 넣을 수 있음
-                require('./images/ben1.jpg'),  
-                require('./images/ben2.jpg'),  
-                require('./images/ben3.jpg'),
-                //네트워크 이미지도 당연히 사용가능
-                { uri: 'https://pbs.twimg.com/media/EJlJ_DNU8AA37Bw.jpg'}  
-            ]  
+    //         // 이미지를 순차적으로 변경하기 위해
+    //         imgNum: 0, // 배열의 index 번호
+    //         imgArray: [ // 함수도 객체이므로 JS의 배열 안에 넣을 수 있음
+    //             require('./images/ben1.jpg'),  
+    //             require('./images/ben2.jpg'),  
+    //             require('./images/ben3.jpg'),
+    //             //네트워크 이미지도 당연히 사용가능
+    //             { uri: 'https://pbs.twimg.com/media/EJlJ_DNU8AA37Bw.jpg'}  
+    //         ]  
 
-        };
-    }
+    //     };
+    // }
 
     render(){
         return(
+
+            // 1) Image Component
+            // <View style={{flex:1}}>
+            //     <Image source={require("./images/ben1.jpg")}></Image>
+            // </View>
+
+            // 2) 스타일 적용하기
             // <View style={{ flex: 1, padding: 16 }}>
-            //     {/* 이미지가 많을 때 스크롤 뷰 사용 */}
-            //     <ScrollView>
-            //         <Image
-            //             style={{ width: 150, height: 150, resizeMode: 'cover' }}
-            //             source={require("./images/pengsoo.jpg")}>
-            //         </Image>
+            //     <Image
+            //         style={{ width: 150, height: 150, resizeMode: 'cover' }}
+            //         source={require("./images/pengsoo.jpg")}>
+            //     </Image>
 
-            //         {/* 네트워크 상의 이미지 보여주기*/}
-            //         {/* 사이즈 지정이 없으면 보이지 않음 */}
-            //         <Image
-            //             style={{ width: 150, height: 150 }}
-            //             source={{ uri: 'https://pbs.twimg.com/media/EJlJ_DNU8AA37Bw.jpg' }}>
-            //         </Image>
+            //     {/* 3) 네트워크 상의 이미지 보여주기*/}
+            //     {/* 네트워크 이미지는 사이즈 지정이 없으면 화면에 보이지 않음 */}
+            //     <Image
+            //          style={{ width: 150, height: 150 }}
+            //          source={{ uri: 'https://pbs.twimg.com/media/EJlJ_DNU8AA37Bw.jpg' }}>
+            //     </Image>
+            // </View>
 
-            //         {/* 이미지 클릭 반응하기: Button이 아니면 onPress 속성은 사용할 수 없음 */}
-            //         {/* 터치를 인지하도록 만들어진 컴포넌트들 TouchableXXX를 사용 */}
+            // 4) 이미지 클릭 반응하기: Button이 아니면 onPress 속성은 사용할 수 없음
+            // 터치를 인지하도록 만들어진 컴포넌트들 (TouchableXXX)을 사용
             //         <TouchableHighlight onPress={this.clickImage}>
             //             <Image
             //                 style={{ width: 150, height: 150, resizeMode: 'cover' }}
@@ -84,7 +90,7 @@ export default class MainComponent extends Component{
 
             //     </ScrollView>
 
-            // </View>
+           // </View>
             <View>
                 <ImageBackground source={ require('./images/pengsoo.jpg')} style={ {width:'100%', height:'100%'} }>
                     <Text style={ {color:'white', fontSize:23, fontWeight:'bold', margin:16}}>Image</Text>
