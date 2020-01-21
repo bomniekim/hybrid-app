@@ -16,7 +16,7 @@ class MainComponent extends Component{
         // let text; // 이건 멤버변수가 아닌 지역변수
         this.text="Hello";
 
-        // 3-5) 화면의 갱신을 자동으로 해주는 데 영향을 주는 state 객체참조변수
+        // 3-5) state: 화면의 갱신을 자동으로 해주는 데 영향을 주는 객체참조변수
         // state 변수는 생성하는 것이라기 보다는 원래부터 Component클래스의 멤버변수로 존재-> 대입의 개념
         this.state={
             text: "Hello",
