@@ -97,8 +97,7 @@ class MainComponent extends Component{
                 </View>
                 <Image source={ this.state.img } style={ imgStyle }></Image>
             </View>
-
-           
+        
         );
     }
 
@@ -214,7 +213,6 @@ const imgStyle={
     width:null,
     resizeMode:'cover',
 }
-
 
 
 //다른 문서에서 이 클래스를 알아듣도록(import 하도록) export
