@@ -7,5 +7,6 @@
 
     echo "NAME : $name \n";
     echo "MESSAGE : $msg \n";
+    
 
 ?>
