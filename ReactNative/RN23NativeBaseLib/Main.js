@@ -42,7 +42,7 @@ export default class Main extends Component{
                     </Card>
                     <Card>
                         <CardItem>
-                        <Thumbnail source={'./ben3.jpg'}></Thumbnail>
+                        <Thumbnail source={require('./ben3.jpg')}></Thumbnail>
                             <Text style={{marginLeft:8}}>Native Base</Text>
                         </CardItem>
                         <CardItem button onPress={()=>{ alert('clicked')}}>
