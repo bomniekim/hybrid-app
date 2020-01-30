@@ -17,7 +17,7 @@ export default class Main extends Component{
                 <Text>Main class의 state data: {this.state.data}</Text>
 
                 {/* 부모-자식-손자-증손자로 data를 전달하는 구조 (상속의 개념은 아님)*/}
-                {/* Main의 자식 컴포넌트 추가하면서 데이터 전달 */}
+                {/* Main의 자식 컴포넌트를 추가하면서 데이터 전달 */}
                 <First data={this.state.data} onPress={this.changeData}></First>
 
             </View>
@@ -25,14 +25,15 @@ export default class Main extends Component{
     }
 }
 
-// Main의 자식 컴포넌트
+// 1) Main의 자식 컴포넌트
 class First extends Component{
     render(){
         return(
+            // 1.1) Main으로부터 property로 전달받은 데이터 출력
             <View style={{padding:16, backgroundColor:'lightgreen'}}>
                 <Text>Main으로부터 받은 data: {this.props.data}</Text>
 
-                {/* Main에게 받은 data를 First의 자식에서 전달하기 */}
+                {/* 1.2) Main에게 받은 data를 First의 자식(Main의 손자)인 Second에게 전달하기 */}
                 <Second data={this.props.data} onPress={this.props.onPress}></Second> 
                 {/* this.props.onPress는 속성 이름을 전달한 것 */}
             </View>
@@ -40,7 +41,7 @@ class First extends Component{
     }
 }
 
-//First의 자식이자 Main의 손자인 컴포넌트
+//2) First의 자식이자 Main의 손자인 컴포넌트
 class Second extends Component{
 
     state={data:this.props.data};
@@ -50,14 +51,19 @@ class Second extends Component{
             <View style={{padding:16, backgroundColor:'skyblue'}}>
                 <Text>First로부터 받은 data: {this.state.data}</Text>
 
+                
                 {/* 전달받은 값 변경하는 버튼 */}
                 <View style={{marginTop:8}}>
+                    <Button title="change data" color="indigo" onPress={ this.clickBtn } ></Button>
+                </View>
+                <View>
                     <Button title="change data" color="indigo" onPress={ ()=>{ this.props.onPress('hi'); } }></Button>
                 </View>
             </View>
         );
     }
     
+    // 2.1) Second에서 데이터를 변경하는 이벤트 처리: props를 직접 변경해보기 
     clickBtn=()=>{
         // this.props.data="Nice";
         this.setState({data:"Nice"});
