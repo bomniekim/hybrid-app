@@ -9,11 +9,11 @@ const InputComponent= (props)=>{ //파라미터로 property(속성)을 전달받
         <View style={style.container}>
             <TextInput 
                 style={style.input}
-                secureTextEntry={props.secureTextEntry}  // 입력글씨 가려지는 속성을 컴포넌트 사용하는 곳으로부터 전달받기
+                secureTextEntry={props.secureTextEntry}  // 입력글씨 가려지는 속성을 컴포넌트 사용하는 곳으로부터 전달 받아오기
                 selectionColor="#292929"
                 autoCapitalize="none" // 자동 첫글자 대문자 변환
                 autoCorrect={false}   // 자동 교정 기능 여부 
-                placeholder={props.placeholder}  // 힌트글씨는 사용하는 곳으로부터 전달받기
+                placeholder={props.placeholder}  // 힌트글씨는 사용하는 곳으로부터 전달 받아오기
                 placeholderTextColor="#c3c2c8"
                 // 실제 앱의 기능을 구현할 때는 입력된 글씨를 저장하는 메소드가 있어야 함
                 onChangeText={props.onChangeText}>
