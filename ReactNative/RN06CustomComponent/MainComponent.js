@@ -13,10 +13,10 @@ export default class MainComponent extends Component{
         return (
 
             // 1. 나만의 Component 만들어 사용하기
-            <View style={style.root}>
-                <Text>Hello React</Text>
-                <MyComponent></MyComponent>
-            </View>
+            // <View style={style.root}>
+            //     <Text>Hello React</Text>
+            //     <MyComponent></MyComponent>
+            // </View>
             // 이를 이용하여 header, body, nav등의 영역으로 나누어 코드 작성 가능
 
 
@@ -24,22 +24,31 @@ export default class MainComponent extends Component{
             // property를 이용해서 값을 전달할 수 있음: property의 이름은 임의로 지정 가능
             // <View style={style.root}>
             //     <Text>Hello React</Text>
-            //     <MyComponent></MyComponent>
+            //     <My_Component name="Son" title="button1"></My_Component>
+            //     <My_Component name="Harry" title="button2"></My_Component>
             // </View>
+
+
+            // 3. 별도의 .js의 컴포넌트를 사용하여 커스텀하기
+            <View style={style.root}>
+                <MyComponent2 onPress={this.changeMessage} p1="World" title="press" color="orange"></MyComponent2>
+
+                <MyComponent3 onPress={ this.changeMessage} title="Dele" color="indigo"></MyComponent3>
+                <MyComponent3 onPress={ this.changeMessage} title="Dele"></MyComponent3>
+            </View>
+
+
+
 
             // <View style={ style.root }>
             //     <Text>{ this.state.msg }</Text>
 
             //     {/* property를 이용해서 값을 전달할 수 있음 */}
-            //     <MyComponent name="Son" title="click me"></MyComponent>
-            //     <MyComponent name="Harry" title="button"></MyComponent>
 
-            //     {/* 별도 .js의 컴포넌트 사용 */}
+                // {/* 별도 .js의 컴포넌트 사용 */}
             //     {/* 버튼 콜백함수를 전달 */}
-            //     <MyComponent2 onPress={this.changeMessage} p1="World" title="press" color="orange"></MyComponent2>
                 
-            //     <MyComponent3 onPress={ this.changeMessage} title="Dele" color="indigo"></MyComponent3>
-            //     <MyComponent3 onPress={ this.changeMessage} title="Dele"></MyComponent3>
+            
 
             //     {/* title은 button의 필수속성이므로 전달하지 않으면 error */}
             //     {/* defaultProps 설정 전 */}
@@ -64,17 +73,21 @@ export default class MainComponent extends Component{
 
 //나만의 컴포넌트 클래스 (android의 CustomView)
 class MyComponent extends Component{
+
+    render(){
+        return (
+            <View style={ {margin:16} }>
+                <Text style={ {marginBottom:8} }>Hello Sonny!</Text>
+                <Button title="click me"></Button>
+            </View>
+        );
+    }
+
+}
+
+class My_Component extends Component{
+
     // 이 컴포넌트를 사용하면서 전달한 속성들은 모두 특별한 멤버변수 this.props에 저장
-
-    // render(){
-    //     return (
-    //         <View style={ {margin:16} }>
-    //             <Text style={ {marginBottom:8} }>Hello Sonny!</Text>
-    //             <Button title="click me"></Button>
-    //         </View>
-    //     );
-    // }
-
 
     render(){
         return (
@@ -84,6 +97,7 @@ class MyComponent extends Component{
             </View>
         );
     }
+
 }
 
 
