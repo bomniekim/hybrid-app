@@ -3,7 +3,7 @@ import {View, Button} from 'react-native';
 
 export default class MyComponent3 extends Component{
 
-    // props가 전달되지 않았을 때를 대비하기: defaultProps
+    // props가 전달되지 않았을 때를 대비하기: defaultProps(기본값)
     static defaultProps={
         title: "untitled",
         color: 'gold',
@@ -19,5 +19,3 @@ export default class MyComponent3 extends Component{
     }
 
 }
-
-// commit: defaultProps를 통해 error 대비
