@@ -5,6 +5,7 @@ class MyComponent2 extends Component{
     render(){
         return(
             <View style={ {margin:16} }>
+                {/* component를 사용할 때 props로 값을 전달: 속성명은 임의로 지정 가능 */}
                 <Text> {this.props.p1} </Text>
                 <Button onPress={ this.props.onPress } title={this.props.title} color={this.props.color}></Button>
             </View>
