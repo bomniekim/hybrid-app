@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
+
+// 외부문서 export후 import
 import MyComponent2 from './MyComponent2';
 import MyComponent3 from './MyComponent3';
 import MyComponent4 from './MyComponent4';
