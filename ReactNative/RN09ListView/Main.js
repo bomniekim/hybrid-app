@@ -111,6 +111,51 @@ export default class Main extends Component{
             // 하지만 위의 방법은 화면을 벗어나면 자동스크롤링 
 
 
+            //4. 08ListLayout2 <FlatList>로 만들어보기 (데이터에 key가 없어서 경고가 표시됨)
+            // <View style= { style.root } >
+                // <Text style={ style.titleText }>FlatList Test</Text>
+                // <FlatList 
+                //     data= { this.state.listData}
+                //     renderItem= { ( {item} )=> 
+                //         <TouchableOpacity style={ style.item } onPress={ ()=>{ Alert.alert(item.key) } }>
+                //             <Image source= { item.img } style= { style.itemImg } ></Image>
+                //             <View>
+                //                 <Text style= { style.itemName } > { item.name } </Text>
+                //                 <Text style= { style.itemMsg } > { item.message }</Text> 
+                //             </View>                            
+                //         </TouchableOpacity>                    
+                //     } >
+                // </FlatList>
+            // </View>
+            // 경고를 해결하려면 배열의 요소인 객체의 프로퍼티에 [key]가 있어야 함.
+            // 그렇다고 FlatList를 쓴다는 이유만으로 데이터 객체마다 [key]프로퍼티를 만들어 내는 것은 다소 비효율적으로 보임
+            // 또한, 서버나 DB에서 불러들인 데이터에는 대부분 key프로퍼티가 없겠죠.
+
+            // 그래서 굳이 원본 데이터를 변경하지 않고 FlatList에 사용할 때 원본배열의 요소객체에 key를 추가해주는 코드 작성
+            // - return () 전에 render()메소드의 지역변수로....
+
+            // 5. 배열 요소객체 마다마다 key프로퍼티 추가
+            // <View style= { style.container } >
+            //     <Text style={ style.titleText }>FlatList TEST</Text>
+
+            //     <FlatList 
+            //         data= { this.state.datas3 }
+            //         renderItem= { ( {item} )=> 
+            //             <TouchableOpacity style={ style.item } onPress={ ()=>{ alert(item.key) } }>
+            //                 <Image source= { item.img } style= { style.itemImg } ></Image>
+            //                 <View style={ {flexDirection:'column'} } >
+            //                     <Text style= { style.itemName } > { item.name } </Text>
+            //                     <Text style= { style.itemMessage } > { item.message }</Text> 
+            //                 </View>                            
+            //             </TouchableOpacity>                    
+            //         } ></FlatList>
+            // </View>
+
+            // 6. 위 방식으로 해결은 되었지만 key로 index를 써야만 해야 하는 상황이 아니라면 굳이 배열의 map()메소드를 통해서
+            // 반복처리를 하면서 처리시간을 증가시킬 필요없음.
+            // FlatList에 이를 위해 item의 기존 멤버변수(프로퍼티)중에서 key를 대체하여 사용하도록 하는 설정이 있음.
+            // 당연히 대체될 프로퍼티는 중복되면 안됨.[중복데이터가 있으면 경고보여짐]
+
             // 4. 08ListLayout2 예제 FlatList로 만들어보기
             <View style={ style.root }>
                 <Text style={ style.titleText }>FlatList Test</Text>
@@ -125,11 +170,22 @@ export default class Main extends Component{
                     // 굳이 원본 데이터를 변경하지 않고 각각의 요소 객체에 key를 추가해주는 것
                     
                     keyExtractor={(item)=>{return item.name;}}
-                    // keyExtractor={item=>item.name}
-                    >
+                    // keyExtractor={item=>item.name} // 
+
+                    // 스크롤바가 보이지 않게 설정 가능
+                    showsVerticalScrollIndicator={false}
+                    >    
                 </FlatList>
             </View>
 
+
+            //추가적인 FlatList에 있는 속성들
+            // initialNumToRender={20}
+            // onEndReachedThreshold={1}
+            // onEndReached={this.onEndReached}
+            // refreshing={this.state.refreshing}
+            // onRefresh={this.onRefresh}
+ 
         );
     }
 
