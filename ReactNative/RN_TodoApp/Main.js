@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TextInput, Dimensions, Platform} from 'react-native';
+import {Text, View, StyleSheet, TextInput, Dimensions, Platform, ScrollView} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
+
+import ToDo from './ToDo';
 
 
 const {height, width} = Dimensions.get('window');
@@ -22,15 +24,24 @@ export default class Main extends Component{
             <LinearGradient colors={["#FAF4C0", "#8BBCFF"]} style={styles.container}>
                 <Text style={styles.title}>Cool To do</Text>
                 <View style={styles.card}>
-                    <TextInput style={styles.input} placeholder={"Add to do"}/>
+                    <TextInput
+                    style={styles.input}
+                    placeholder={"Add to do"}
+                    onChangeText={this._addToDo}
+                    placeholderTextColor={'#999'}
+                    // returnKeyType={"done"}
+                    autoCorrect={false}/>
+                    <ScrollView contentContainerStyle={styles.toDos}>
+                        <ToDo></ToDo>
+                    </ScrollView>
                 </View>
             </LinearGradient>
         )
     }
 
-    addTodo= value =>{
+    _addTodo= text =>{
         this.setState({
-            addToDo: value // 파라미터로 받아온 text
+            addToDo: text // 파라미터로 받아온 text로 setState 
         })
     }
 }
@@ -75,6 +86,9 @@ const styles = StyleSheet.create({
         // borderBottomWidth: StyleSheet.hairlineWidth
         borderBottomWidth: 1,
         fontSize:18,
-    }
+    },
+    toDos:{
+        alignItems: 'center',
+    },
 
 })
