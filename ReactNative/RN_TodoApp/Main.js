@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-
+import uuidv1 from 'uuid/v1';
 import ToDo from './ToDo';
 
 const {height, width} = Dimensions.get('window');
@@ -21,10 +21,19 @@ export default class Main extends Component {
 
     this.state = {
       addToDo: '',
+      loadedToDos: false,
+      toDos: {},
     };
   }
+
+  componentDidMount = () => {
+    this._loadToDos();
+  };
   render() {
-    const {addToDo} = this.state; // 구조분해할당
+    const {addToDo, loadedToDos, toDos} = this.state; // 구조분해할당
+    if (!loadedToDos) {
+      return <Text>Loading..</Text>;
+    }
 
     return (
       <LinearGradient colors={['#FAF4C0', '#8BBCFF']} style={styles.container}>
@@ -38,18 +47,106 @@ export default class Main extends Component {
             placeholderTextColor={'#999'}
             // returnKeyType={"done"}
             autoCorrect={false}
+            onSubmitEditing={this._newAddToDo}
           />
           <ScrollView contentContainerStyle={styles.toDos}>
-            <ToDo text={"Hello I'm ToDo"}></ToDo>
+            {/* {toDos.map(todo=> <ToDo/>)} */}
+            {/* array를 이용해 대량의 데이터를 다뤘다면 map()을 사용했겠지 */}
+            {Object.values(toDos).map(toDo => (
+              <ToDo
+                key={toDo.id}
+                deleteTodo={this._deleteToDo}
+                uncompleteToDo={this._uncompleteToDo}
+                completeToDo={this._completeToDo}
+                {...toDo}
+              />
+            ))}
           </ScrollView>
         </View>
       </LinearGradient>
     );
   }
 
-  _addTodo = text => {
+  _addToDo = text => {
     this.setState({
       addToDo: text, // 파라미터로 받아온 props인 text
+    });
+  };
+
+  _loadToDos = () => {
+    this.setState({
+      loadedToDos: true,
+    });
+  };
+
+  _newAddToDo = () => {
+    const {addToDo} = this.state;
+    if (addToDo !== '') {
+      this.setState(prevState => {
+        const ID = uuidv1(); // npm install uuid --save
+        const addToDoObj = {
+          [ID]: {
+            // 데이터의 관리를 용이하게 하기 위해 array 대신 object로 만들어 사용
+            id: ID,
+            isCompleted: false,
+            text: addToDo,
+            createdAt: Date.now(),
+          },
+        };
+
+        const newState = {
+          ...prevState,
+          addToDo: '', // add To Do 칸을 비워줌
+          toDos: {
+            ...prevState.toDos,
+            ...addToDoObj,
+          },
+        };
+        return {...newState};
+      });
+    }
+  };
+
+  _deleteToDo = id => {
+    this.setState(prevState => {
+      const toDos = prevState.toDos;
+      delete toDos[id];
+      const newState = {
+        ...prevState,
+        ...toDos,
+      };
+      return {...newState};
+    });
+  };
+
+  _uncompleteToDo = id => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: false,
+          },
+        },
+      };
+      return {...newState};
+    });
+  };
+  _completeToDo = id => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: true,
+          },
+        },
+      };
+      return {...newState};
     });
   };
 }
