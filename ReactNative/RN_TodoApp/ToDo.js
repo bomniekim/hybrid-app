@@ -7,18 +7,30 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const {width, height} = Dimensions.get('window');
 
 export default class ToDo extends Component {
-  state = {
-    isEditing: false,
-    isCompleted: false,
-    toDoValue: '', // edit할 경우 해당 텍스트를 복사해 state에 저장
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      toDoValue: props.text, // edit할 경우 해당 텍스트를 복사해 state에 저장
+    };
+  }
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    uncompleteToDo: PropTypes.func.isRequired,
+    completeToDo: PropTypes.func.isRequired,
   };
+  state = {};
   render() {
     const {isCompleted, isEditing, toDoValue} = this.state;
-    const {text} = this.props;
+    const {text, id, deleteTodo} = this.props;
 
     return (
       <View style={styles.container}>
@@ -35,12 +47,15 @@ export default class ToDo extends Component {
           {isEditing ? (
             <TextInput
               style={[
-                styles.input,
                 styles.text,
+                styles.input,
                 isCompleted ? styles.completedText : styles.uncompletedText,
               ]}
+              autoCorrect={false}
               value={toDoValue}
               multiline={true}
+              onChangeText={this._controlInput}
+              onBlur={this._finishEditing} // 편집이 완료되지 않은 상태에서 칸 밖을 클릭하면 편집 전 상태로 종료
             />
           ) : (
             <Text
@@ -55,6 +70,7 @@ export default class ToDo extends Component {
 
         {isEditing ? (
           <View style={styles.action}>
+            {/* 수정할 때의 모드 */}
             <TouchableOpacity onPressOut={this._finishEditing}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionChecked}>✓</Text>
@@ -63,12 +79,13 @@ export default class ToDo extends Component {
           </View>
         ) : (
           <View style={styles.action}>
+            {/* 수정하지 않을 때의 모드 */}
             <TouchableOpacity onPressOut={this._startEditing}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionText}>✏️</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPressOut={() => deleteTodo(id)}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionText}>❌</Text>
               </View>
@@ -90,7 +107,6 @@ export default class ToDo extends Component {
   };
 
   _startEditing = () => {
-    const {text} = this.props;
     this.setState({
       isEditing: true,
       toDoValue: text, // 편집을 시작하면 props에서 text를 가져와서 이를 state에 저장
@@ -102,6 +118,10 @@ export default class ToDo extends Component {
       isEditing: false,
     });
   };
+
+  _controlInput = text => {
+    this.setState({toDoValue: text});
+  };
 }
 
 const styles = StyleSheet.create({
@@ -111,9 +131,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
-  column: {},
+  column: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: width / 1.5,
+  },
   circle: {
     width: 30,
     height: 30,
@@ -121,7 +144,7 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderWidth: 4,
     marginRight: 15,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   completedCircle: {
     borderColor: '#bbb',
@@ -133,6 +156,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 23,
     marginVertical: 15,
+    width: width / 2,
+    paddingTop: 5,
   },
   completedText: {
     color: '#ddd',
@@ -140,12 +165,6 @@ const styles = StyleSheet.create({
   },
   uncompletedText: {
     color: '#353535',
-  },
-  column: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: width / 2,
   },
   action: {
     flexDirection: 'row',
@@ -163,6 +182,8 @@ const styles = StyleSheet.create({
   },
   actionText: {},
   input: {
-    marginVertical: 10,
+    width: width / 2,
+    marginVertical: 15,
+    paddingBottom: 5,
   },
 });
