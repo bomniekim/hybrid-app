@@ -29,8 +29,8 @@ export default class ToDo extends Component {
   };
   state = {};
   render() {
-    const {isCompleted, isEditing, toDoValue} = this.state;
-    const {text, id, deleteTodo} = this.props;
+    const {isEditing, toDoValue} = this.state;
+    const {text, id, deleteTodo, isCompleted} = this.props;
 
     return (
       <View style={styles.container}>
@@ -97,14 +97,23 @@ export default class ToDo extends Component {
   }
 
   _toggleCompleteTodo = () => {
-    this.setState(prevState => {
-      return {
-        isCompleted: !prevState.isCompleted,
-        // 전의 boolean 값과 반대로 toggle
-        // 완료되지 않은 상태에서 누르면 완료되고, 완료된 상태에서 누르면 완료되지 않은 상태로 돌아감
-      };
-    });
+    const {isCompleted, uncompleteToDo, completeToDo, id} = this.props;
+    if (isCompleted) {
+      uncompleteToDo(id);
+    } else {
+      completeToDo(id);
+    }
   };
+
+  // _toggleCompleteTodo = () => {
+  //   this.setState(prevState => {
+  //     return {
+  //       isCompleted: !prevState.isCompleted,
+  //       // 전의 boolean 값과 반대로 toggle
+  //       // 완료되지 않은 상태에서 누르면 완료되고, 완료된 상태에서 누르면 완료되지 않은 상태로 돌아감
+  //     };
+  //   });
+  // };
 
   _startEditing = () => {
     this.setState({
