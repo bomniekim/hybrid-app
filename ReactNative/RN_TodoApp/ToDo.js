@@ -97,7 +97,7 @@ export default class ToDo extends Component {
     );
   }
 
-  _toggleCompleteTodo = () => {
+  _toggleCompleteTodo = event => {
     const {isCompleted, uncompleteToDo, completeToDo, id} = this.props;
     if (isCompleted) {
       uncompleteToDo(id);
@@ -116,13 +116,13 @@ export default class ToDo extends Component {
   //   });
   // };
 
-  _startEditing = () => {
+  _startEditing = event => {
     this.setState({
       isEditing: true,
     });
   };
 
-  _finishEditing = () => {
+  _finishEditing = event => {
     const {toDoValue} = this.state;
     const {id, updateToDo} = this.props;
     updateToDo(id, toDoValue);

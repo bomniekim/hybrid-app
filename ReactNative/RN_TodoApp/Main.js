@@ -54,16 +54,19 @@ export default class Main extends Component {
           <ScrollView contentContainerStyle={styles.toDos}>
             {/* {toDos.map(todo=> <ToDo/>)} */}
             {/* array를 이용해 대량의 데이터를 다뤘다면 map()을 사용했겠지 */}
-            {Object.values(toDos).map(toDo => (
-              <ToDo
-                key={toDo.id}
-                deleteTodo={this._deleteToDo}
-                uncompleteToDo={this._uncompleteToDo}
-                completeToDo={this._completeToDo}
-                updateToDo={this._updateToDo}
-                {...toDo}
-              />
-            ))}
+            {Object.values(toDos)
+              .reverse()
+              .map(toDo => (
+                // reverse: object가 저장되는 순간 맨 위로 오게끔
+                <ToDo
+                  key={toDo.id}
+                  deleteTodo={this._deleteToDo}
+                  uncompleteToDo={this._uncompleteToDo}
+                  completeToDo={this._completeToDo}
+                  updateToDo={this._updateToDo}
+                  {...toDo}
+                />
+              ))}
           </ScrollView>
         </View>
       </LinearGradient>
@@ -76,10 +79,18 @@ export default class Main extends Component {
     });
   };
 
-  _loadToDos = () => {
-    this.setState({
-      loadedToDos: true,
-    });
+  _loadToDos = async () => {
+    try {
+      const toDos = await AsyncStorage.getItem('toDos');
+      // getItem이 끝날 때까지 function을 처리하지 말고 기다려!
+      const parsedToDos = JSON.parse(toDos); // string -> object로 변환
+      this.setState({
+        loadedToDos: true,
+        toDos: parsedToDos,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   _newAddToDo = () => {
