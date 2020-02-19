@@ -26,6 +26,7 @@ export default class ToDo extends Component {
     id: PropTypes.string.isRequired,
     uncompleteToDo: PropTypes.func.isRequired,
     completeToDo: PropTypes.func.isRequired,
+    updateToDo: PropTypes.func.isRequired,
   };
   state = {};
   render() {
@@ -118,11 +119,13 @@ export default class ToDo extends Component {
   _startEditing = () => {
     this.setState({
       isEditing: true,
-      toDoValue: text, // 편집을 시작하면 props에서 text를 가져와서 이를 state에 저장
     });
   };
 
   _finishEditing = () => {
+    const {toDoValue} = this.state;
+    const {id, updateToDo} = this.props;
+    updateToDo(id, toDoValue);
     this.setState({
       isEditing: false,
     });

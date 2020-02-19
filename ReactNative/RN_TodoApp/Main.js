@@ -9,6 +9,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 import LinearGradient from 'react-native-linear-gradient';
 import uuidv1 from 'uuid/v1';
 import ToDo from './ToDo';
@@ -58,6 +60,7 @@ export default class Main extends Component {
                 deleteTodo={this._deleteToDo}
                 uncompleteToDo={this._uncompleteToDo}
                 completeToDo={this._completeToDo}
+                updateToDo={this._updateToDo}
                 {...toDo}
               />
             ))}
@@ -102,6 +105,7 @@ export default class Main extends Component {
             ...addToDoObj,
           },
         };
+        this._saveToDos(newState.toDos);
         return {...newState};
       });
     }
@@ -115,6 +119,7 @@ export default class Main extends Component {
         ...prevState,
         ...toDos,
       };
+      this._saveToDos(newState.toDos);
       return {...newState};
     });
   };
@@ -131,6 +136,7 @@ export default class Main extends Component {
           },
         },
       };
+      this._saveToDos(newState.toDos);
       return {...newState};
     });
   };
@@ -146,8 +152,32 @@ export default class Main extends Component {
           },
         },
       };
+      this._saveToDos(newState.toDos);
       return {...newState};
     });
+  };
+
+  _updateToDo = (id, text) => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            text: text,
+          },
+        },
+      };
+      this._saveToDos(newState.toDos);
+      return {...newState};
+    });
+  };
+
+  _saveToDos = newToDos => {
+    const saveToDos = AsyncStorage.setItem('toDos', JSON.stringify(newToDos));
+    // toDos는 식별자 key
+    // AsyncStorage에는 string만 저장할 수 있으므로 object인 newToDos를 string으로 바꾸어주는 작업 필요
   };
 }
 
