@@ -35,6 +35,7 @@ export default class Main extends Component {
     const {addToDo, loadedToDos, toDos} = this.state; // 구조분해할당
     if (!loadedToDos) {
       return <Text>Loading..</Text>;
+      // 후에 splash screen으로 업데이트
     }
 
     return (
