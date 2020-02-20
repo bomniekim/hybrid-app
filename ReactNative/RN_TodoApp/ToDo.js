@@ -86,7 +86,11 @@ export default class ToDo extends Component {
                 <Text style={styles.actionText}>✏️</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPressOut={() => deleteTodo(id)}>
+            <TouchableOpacity
+              onPressOut={event => {
+                event.stopPropagation;
+                deleteTodo(id);
+              }}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionText}>❌</Text>
               </View>
@@ -98,6 +102,7 @@ export default class ToDo extends Component {
   }
 
   _toggleCompleteTodo = event => {
+    event.stopPropagation(); // 버튼 클릭 이벤트가 스크롤 뷰에게 영향을 주는 것을 멈춤
     const {isCompleted, uncompleteToDo, completeToDo, id} = this.props;
     if (isCompleted) {
       uncompleteToDo(id);
@@ -117,12 +122,14 @@ export default class ToDo extends Component {
   // };
 
   _startEditing = event => {
+    event.stopPropagation();
     this.setState({
       isEditing: true,
     });
   };
 
   _finishEditing = event => {
+    event.stopPropagation();
     const {toDoValue} = this.state;
     const {id, updateToDo} = this.props;
     updateToDo(id, toDoValue);
