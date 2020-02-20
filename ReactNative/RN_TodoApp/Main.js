@@ -201,9 +201,10 @@ const styles = StyleSheet.create({
   title: {
     color: 'black',
     fontSize: 35,
-    fontWeight: '100',
+    fontWeight: '600',
     marginTop: 30,
     marginBottom: 20,
+    fontFamily: 'Cafe24Oneprettynight',
   },
   card: {
     backgroundColor: 'white',
@@ -230,7 +231,8 @@ const styles = StyleSheet.create({
     borderBottomColor: '#bbb',
     // borderBottomWidth: StyleSheet.hairlineWidth
     borderBottomWidth: 1,
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily: 'Cafe24Oneprettynight',
   },
   toDos: {
     alignItems: 'center',

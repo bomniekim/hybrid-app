@@ -172,25 +172,30 @@ const styles = StyleSheet.create({
     borderColor: '#8BBCFF',
   },
   text: {
-    fontWeight: 'bold',
+    fontWeight: '200',
     fontSize: 23,
     marginVertical: 15,
     width: width / 2,
     paddingTop: 5,
+    fontFamily: 'Cafe24Oneprettynight',
   },
   completedText: {
     color: '#ddd',
     textDecorationLine: 'line-through',
+    fontFamily: 'Cafe24Oneprettynight',
   },
   uncompletedText: {
     color: '#353535',
+    fontFamily: 'Cafe24Oneprettynight',
   },
   action: {
     flexDirection: 'row',
+    fontFamily: 'Cafe24Oneprettynight',
   },
   actionContainer: {
     paddingVertical: 10,
     paddingHorizontal: 10,
+    fontFamily: 'Cafe24Oneprettynight',
     // marginVertical: 10,
     // marginHorizontal: 10,
     // 아이콘이 아닌 근처를 클릭해도 감지할 수 있도록 padding을 주는 것
@@ -198,11 +203,13 @@ const styles = StyleSheet.create({
   },
   actionChecked: {
     fontSize: 30,
+    fontFamily: 'Cafe24Oneprettynight',
   },
   actionText: {},
   input: {
     width: width / 2,
     marginVertical: 15,
     paddingBottom: 5,
+    fontFamily: 'Cafe24Oneprettynight',
   },
 });
