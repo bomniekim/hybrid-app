@@ -87,7 +87,7 @@ export default class Main extends Component {
       const parsedToDos = JSON.parse(toDos); // string -> object로 변환
       this.setState({
         loadedToDos: true,
-        toDos: parsedToDos,
+        toDos: parsedToDos || {},
       });
     } catch (err) {
       console.log(err);
