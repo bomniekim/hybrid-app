@@ -28,9 +28,9 @@ export default class Main extends Component {
     };
   }
 
-  // componentDidMount = () => {
-  //   this._loadToDos();
-  // };
+  componentDidMount = () => {
+    this._loadToDos();
+  };
   render() {
     const {addToDo, loadedToDos, toDos} = this.state; // 구조분해할당
     // if (!loadedToDos) {
