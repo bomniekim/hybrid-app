@@ -1,4 +1,4 @@
-## Flux Pattern
+## Flux Pattern : Unidirectional data flow
 
 Flux pattern은 단방향 데이터 흐름을 활용해 뷰 컴포넌트를 구성하는 React를 보완하는 역할을 한다.<br/><br/>
 * #### React Native의 단방향 데이터 흐름 구조 <br/> 
